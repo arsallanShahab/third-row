@@ -20,7 +20,7 @@ const Navbar = (props: Props) => {
             className="h-auto w-full object-contain"
           />
         </Link>
-        <FlexContainer alignItems="center" gap="7xl">
+        <FlexContainer alignItems="center" gap="7xl" className="hidden md:flex">
           <Link to="/" className="nav-link">
             Home
           </Link>

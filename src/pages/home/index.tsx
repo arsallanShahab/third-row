@@ -103,11 +103,7 @@ const Home = () => {
         className="section bg-[var(--zinc)]"
         gap="3xl"
       >
-        <FlexContainer
-          variant="row-between"
-          alignItems="center"
-          className="p-5 bg-white rounded-[99px] border-2 border-[#D5D2D3] "
-        >
+        <div className="flex flex-row justify-between items-center flex-wrap sm:flex-nowrap p-5 bg-white md:rounded-[99px] rounded-4xl border-2 border-[#D5D2D3] ">
           <FlexContainer
             alignItems="center"
             gap="none"
@@ -116,56 +112,55 @@ const Home = () => {
             <Search className="-mt-0.5 w-5 h-5 text-[var(--zinc-dark)] absolute left-3" />
             <Input
               placeholder="Search Category"
-              className="w-full pl-10 pr-3 py-4 text-2xl border-none shadow-none h-auto rounded-[99px] bg-transparent focus:outline-none focus:ring-0 focus:border-none"
+              className="w-full pl-10 pr-3 py-4 text-sm md:text-lg border-none shadow-none h-auto rounded-[99px] bg-transparent focus:outline-none focus:ring-0 focus:border-none"
             />
           </FlexContainer>
-          <span className="h-8 w-[1px] bg-[var(--zinc-dark)]"></span>
-          <FlexContainer alignItems="center">
+          <span className="hidden sm:block h-8 w-[1px] bg-[var(--zinc-dark)]"></span>
+          <FlexContainer
+            alignItems="center"
+            className="flex-1 flex-wrap sm:flex-auto"
+          >
             <FlexContainer
               alignItems="center"
               gap="none"
-              className="w-full relative min-w-[280px]"
+              className="w-full relative md:min-w-[150px] lg:min-w-[280px]"
             >
               <Calendar className="-mt-0.5 w-5 h-5 text-[var(--zinc-dark)] absolute left-3" />
               <Input
                 placeholder="Date"
-                className="w-full pl-10 pr-3 py-4 text-2xl border-none shadow-none h-auto rounded-[99px] bg-transparent focus:outline-none focus:ring-0 focus:border-none"
+                className="w-full pl-10 pr-3 py-4 text-sm md:text-lg border-none shadow-none h-auto rounded-[99px] bg-transparent focus:outline-none focus:ring-0 focus:border-none"
               />
             </FlexContainer>
-            <span className="h-8 w-[1px] bg-[var(--zinc-dark)]"></span>
+            <span className="hidden sm:block h-8 w-[1px] bg-[var(--zinc-dark)]"></span>
 
             <FlexContainer
               alignItems="center"
               gap="none"
-              className="w-full relative min-w-[280px]"
+              className="w-full relative md:min-w-[150px] lg:min-w-[280px]"
             >
               <MapPin className="-mt-0.5 w-5 h-5 text-[var(--zinc-dark)] absolute left-3" />
               <Input
                 placeholder="Location"
-                className="w-full pl-10 pr-3 py-4 text-2xl border-none shadow-none h-auto rounded-[99px] bg-transparent focus:outline-none focus:ring-0 focus:border-none"
+                className="w-full pl-10 pr-3 py-4 text-sm md:text-lg border-none shadow-none h-auto rounded-[99px] bg-transparent focus:outline-none focus:ring-0 focus:border-none"
               />
             </FlexContainer>
-            <button className="btn-filled">SEARCH</button>
+            <button className="btn-filled flex-1 sm:flex-auto">SEARCH</button>
           </FlexContainer>
-        </FlexContainer>
+        </div>
         <Swiper
           spaceBetween={0}
           slidesPerView={1}
-          className="w-fit h-[600px] slideshow"
+          className="w-fit md:h-[600px] slideshow"
           modules={[Pagination, A11y, Autoplay, Thumbs]}
           thumbs={{ swiper: thumbsSwiper }}
           pagination={{ clickable: true }}
         >
           <SwiperSlide className="slide">
-            <FlexContainer
-              className="w-full h-full relative"
-              alignItems="center"
-              gap="7xl"
-            >
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-center w-full h-full relative gap-12">
               <FlexContainer
                 variant="column-start"
                 gap="5xl"
-                className="min-w-[450px]"
+                className="md:min-w-[450px] pt-5 sm:pt-0"
               >
                 <FlexContainer
                   variant="column-start"
@@ -173,13 +168,13 @@ const Home = () => {
                   className="w-full"
                 >
                   {" "}
-                  <h1 className="text-5xl text-[var(--grey-dark)]">
+                  <h1 className="text-3xl md:text-5xl text-[var(--grey-dark)]">
                     Discover Events of{" "}
                   </h1>
-                  <h1 className="text-5xl text-[var(--grey-dark)] font-bold flex">
+                  <h1 className="text-4xl md:text-5xl text-[var(--grey-dark)] font-bold flex">
                     Olivia Rodrigo
                   </h1>
-                  <p className="text-lg text-[var(--grey-dark)] z-10">
+                  <p className="text-base md:text-lg text-[var(--grey-dark)] z-10">
                     Tickets for events at one place
                   </p>
                 </FlexContainer>
@@ -194,7 +189,7 @@ const Home = () => {
                   className="w-full h-full object-cover rounded-xl"
                 />
               </div>
-            </FlexContainer>
+            </div>
           </SwiperSlide>
           <SwiperSlide>Slide 2</SwiperSlide>
           <SwiperSlide>Slide 3</SwiperSlide>
@@ -225,7 +220,7 @@ const Home = () => {
             </button>
           </FlexContainer>
         </FlexContainer>
-        <div className="grid grid-cols-4 gap-7">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-7">
           <FlexContainer
             variant="column-center"
             className="bg-[#FEF2F2] px-5 py-10 rounded-xl"
@@ -472,7 +467,7 @@ const Home = () => {
         gap="3xl"
         className="section bg-white pb-10"
       >
-        <FlexContainer variant="row-between" alignItems="center">
+        <FlexContainer wrap="wrap" variant="row-between" alignItems="center">
           <h3 className="text-3xl font-semibold text-[var(--grey-dark)]">
             Popular Near You
           </h3>
@@ -533,7 +528,7 @@ const Home = () => {
           </div>
           <FlexContainer
             variant="row-between"
-            className="col-span-1 bg-[var(--zinc)] rounded-lg"
+            className="col-span-1 bg-[var(--zinc)] rounded-lg flex-col-reverse md:flex-row"
           >
             <FlexContainer variant="column-between" className="p-5">
               <FlexContainer variant="column-start">
@@ -566,12 +561,12 @@ const Home = () => {
             <img
               src="/gym.png"
               alt="gym"
-              className="h-full w-[300px] object-cover rounded-lg"
+              className="h-[300px] w-auto md:h-full md:w-[300px] object-cover rounded-lg"
             />
           </FlexContainer>
           <FlexContainer
             variant="row-between"
-            className="col-span-1 bg-[var(--zinc)] rounded-lg"
+            className="col-span-1 bg-[var(--zinc)] rounded-lg flex-col-reverse md:flex-row"
           >
             <FlexContainer variant="column-between" className="p-5">
               <FlexContainer variant="column-start">
@@ -604,7 +599,7 @@ const Home = () => {
             <img
               src="/gym.png"
               alt="gym"
-              className="h-full w-[300px] object-cover rounded-lg"
+              className="h-[300px] w-auto md:h-full md:w-[300px] object-cover rounded-lg"
             />
           </FlexContainer>
         </div>

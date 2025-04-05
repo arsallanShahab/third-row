@@ -6,7 +6,7 @@ type Props = {};
 
 const Footer = (props: Props) => {
   return (
-    <FlexContainer variant="column-start" className="p-15">
+    <FlexContainer variant="column-start" className="p-5 pt-10 md:10 lg:p-15">
       <FlexContainer>
         <img
           src="/logo.svg"
@@ -14,7 +14,7 @@ const Footer = (props: Props) => {
           className="h-20 w-auto object-contain"
         />
       </FlexContainer>
-      <FlexContainer variant="row-start" gap="7xl">
+      <FlexContainer variant="row-start" gap="7xl" wrap="wrap">
         <FlexContainer variant="column-start">
           <h4 className="text-2xl font-semibold">Who we are?</h4>
           <p className="text-[var(--grey)] max-w-xl">
@@ -23,7 +23,7 @@ const Footer = (props: Props) => {
             ever since the 1500s
           </p>
         </FlexContainer>
-        <FlexContainer className="gap-20">
+        <FlexContainer className="gap-5 md:gap-10 lg:gap-20">
           <FlexContainer variant="column-start" gap="lg">
             <h4 className="text-xl font-semibold">Main links</h4>
             <FlexContainer variant="column-start" gap="md">
@@ -68,7 +68,11 @@ const Footer = (props: Props) => {
           </FlexContainer>
         </FlexContainer>
       </FlexContainer>
-      <FlexContainer variant="row-between" className="py-10">
+      <FlexContainer
+        variant="row-between"
+        className="py-10 justify-center md:justify-between"
+        wrap="wrap"
+      >
         <p className="text-[#222222] text-sm">@2025 Third Row</p>
         <FlexContainer alignItems="center">
           <Link to={"/"} className="text-[#222222] text-sm">
