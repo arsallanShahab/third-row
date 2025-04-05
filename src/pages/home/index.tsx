@@ -1,5 +1,6 @@
 import FlexContainer from "@/components/system/flex-container";
 import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
 import {
   ArrowRight,
   Calendar,
@@ -91,10 +92,31 @@ const MUSIC_DATA = [
   },
 ];
 
+const POPULAR_CATEGORIES_TABS = [
+  {
+    id: 0,
+    title: "All",
+  },
+  {
+    id: 1,
+    title: "Theater & Cinema",
+  },
+  {
+    id: 2,
+    title: "Sports",
+  },
+  {
+    id: 3,
+    title: "Concert",
+  },
+];
+
 const Home = () => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const [activeTab, setActiveTab] = useState(0);
   const sportsContainer = useRef<HTMLDivElement | null>(null);
   const musicContainer = useRef<HTMLDivElement | null>(null);
+
   return (
     <FlexContainer variant="column-start" gap="5xl">
       {/* Search Bar */}
@@ -202,7 +224,7 @@ const Home = () => {
         gap="3xl"
         className="section bg-white pb-10"
       >
-        <FlexContainer variant="row-between">
+        <FlexContainer variant="row-between" wrap="wrap">
           <FlexContainer variant="column-start" gap="sm">
             <p className="text-base font-medium text-[var(--zinc-dark)]">
               All the Fun starts here
@@ -212,12 +234,10 @@ const Home = () => {
             </h3>
           </FlexContainer>
           <FlexContainer>
-            <button className="px-5 py-10 rounded-lg bg-[#FDECF2]">
-              <ChevronLeft className="w-9 h-9 stroke-2 text-[var(--grey-dark)]" />
-            </button>
-            <button className="px-5 py-10 rounded-lg bg-[#FDECF2]">
-              <ChevronRight className="w-9 h-9 stroke-2 text-[var(--grey-dark)]" />
-            </button>
+            <Link to={"/"} className="btn-underlined">
+              VIEW ALL
+              <ChevronRight className="w-4 h-4 text-[var(--grey-dark)]" />
+            </Link>
           </FlexContainer>
         </FlexContainer>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-7">
@@ -471,19 +491,24 @@ const Home = () => {
           <h3 className="text-3xl font-semibold text-[var(--grey-dark)]">
             Popular Near You
           </h3>
-          <FlexContainer>
-            <button className="px-4 py-2 rounded-3xl border border-[var(--grey-dark)] text-[var(--grey-dark)] text-sm cursor-pointer">
-              All
-            </button>
-            <button className="px-4 py-2 rounded-3xl border border-[var(--zinc-dark)] text-[var(--zinc-dark)] text-sm cursor-pointer">
-              Theater & Cinema
-            </button>
-            <button className="px-4 py-2 rounded-3xl border border-[var(--zinc-dark)] text-[var(--zinc-dark)] text-sm cursor-pointer">
-              Sports
-            </button>
-            <button className="px-4 py-2 rounded-3xl border border-[var(--zinc-dark)] text-[var(--zinc-dark)] text-sm cursor-pointer">
-              Concert
-            </button>
+          <FlexContainer
+            wrap="nowrap"
+            className="w-full overflow-x-auto hide-scrollbar scroll-smooth"
+          >
+            {POPULAR_CATEGORIES_TABS.map((tab) => (
+              <button
+                key={tab.id}
+                className={cn(
+                  `min-w-fit px-4 py-2 rounded-3xl border text-[var(--grey-dark)] text-sm cursor-pointer duration-200`,
+                  activeTab === tab.id
+                    ? "border-[var(--pink)] bg-[var(--pink)] text-white"
+                    : "border-[var(--zinc-dark)] text-[var(--zinc-dark)]"
+                )}
+                onClick={() => setActiveTab(tab.id)}
+              >
+                {tab.title}
+              </button>
+            ))}
           </FlexContainer>
           <FlexContainer>
             <Link to={"/"} className="btn-underlined">
@@ -530,7 +555,7 @@ const Home = () => {
             variant="row-between"
             className="col-span-1 bg-[var(--zinc)] rounded-lg flex-col-reverse md:flex-row"
           >
-            <FlexContainer variant="column-between" className="p-5">
+            <FlexContainer variant="column-between" className="p-5 w-full">
               <FlexContainer variant="column-start">
                 <FlexContainer gap="sm">
                   <Calendar className="w-4 h-4 text-[var(--zinc-dark)]" />
@@ -568,7 +593,7 @@ const Home = () => {
             variant="row-between"
             className="col-span-1 bg-[var(--zinc)] rounded-lg flex-col-reverse md:flex-row"
           >
-            <FlexContainer variant="column-between" className="p-5">
+            <FlexContainer variant="column-between" className="p-5 w-full">
               <FlexContainer variant="column-start">
                 <FlexContainer gap="sm">
                   <Calendar className="w-4 h-4 text-[var(--zinc-dark)]" />
@@ -617,9 +642,9 @@ const Home = () => {
               Sports
             </h3>
           </FlexContainer>
-          <FlexContainer alignItems="center">
+          <FlexContainer alignItems="center" gap="xl">
             <button
-              className="px-3 py-4 rounded-lg bg-[#FDECF2] cursor-pointer"
+              className="px-3 py-4 rounded-lg bg-[#FDECF2] cursor-pointer hidden sm:flex"
               onClick={() => {
                 const ref = sportsContainer.current;
                 if (ref) {
@@ -630,7 +655,7 @@ const Home = () => {
               <ChevronLeft className="w-7 stroke-2 text-[var(--grey-dark)]" />
             </button>
             <button
-              className="px-3 py-4 rounded-lg bg-[#FDECF2] cursor-pointer"
+              className="px-3 py-4 rounded-lg bg-[#FDECF2] cursor-pointer hidden sm:flex"
               onClick={() => {
                 const ref = sportsContainer.current;
                 if (ref) {
@@ -649,7 +674,7 @@ const Home = () => {
         <FlexContainer
           gap="6xl"
           wrap="nowrap"
-          className="w-full overflow-x-auto pb-5 scroll-smooth"
+          className="w-full overflow-x-auto pb-5 scroll-smooth hide-scrollbar"
           ref={sportsContainer}
         >
           {SPORTS_DATA.map((e, i) => {
@@ -696,9 +721,9 @@ const Home = () => {
               Music & Dance
             </h3>
           </FlexContainer>
-          <FlexContainer alignItems="center">
+          <FlexContainer alignItems="center" gap="xl">
             <button
-              className="px-3 py-4 rounded-lg bg-[#FDECF2] cursor-pointer"
+              className="px-3 py-4 rounded-lg bg-[#FDECF2] cursor-pointer hidden sm:flex"
               onClick={() => {
                 const ref = musicContainer.current;
                 if (ref) {
@@ -709,7 +734,7 @@ const Home = () => {
               <ChevronLeft className="w-7 stroke-2 text-[var(--grey-dark)]" />
             </button>
             <button
-              className="px-3 py-4 rounded-lg bg-[#FDECF2] cursor-pointer"
+              className="px-3 py-4 rounded-lg bg-[#FDECF2] cursor-pointer hidden sm:flex"
               onClick={() => {
                 const ref = musicContainer.current;
                 if (ref) {
@@ -728,7 +753,7 @@ const Home = () => {
         <FlexContainer
           gap="6xl"
           wrap="nowrap"
-          className="w-full overflow-x-auto pb-5 scroll-smooth"
+          className="w-full overflow-x-auto pb-5 scroll-smooth hide-scrollbar"
           ref={musicContainer}
         >
           {MUSIC_DATA.map((e, i) => {

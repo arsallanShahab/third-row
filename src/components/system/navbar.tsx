@@ -10,7 +10,7 @@ const Navbar = (props: Props) => {
       <FlexContainer
         variant="row-between"
         alignItems="center"
-        className="px-10 py-5"
+        className="px-5 md:px-10 lg:px-15 py-5"
       >
         {" "}
         <Link to="/">
