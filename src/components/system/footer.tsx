@@ -6,7 +6,7 @@ type Props = {};
 
 const Footer = (props: Props) => {
   return (
-    <FlexContainer variant="column-start" className="p-15 bg-[#E7E7E7]">
+    <FlexContainer variant="column-start" className="p-15">
       <FlexContainer>
         <img
           src="/logo.svg"
