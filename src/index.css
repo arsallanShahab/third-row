@@ -184,3 +184,9 @@ html {
 .slideshow .swiper-pagination-bullets.swiper-pagination-horizontal {
   bottom: 2.5em;
 }
+
+@media (max-width: 768px) {
+  .section {
+    @apply px-5;
+  }
+}

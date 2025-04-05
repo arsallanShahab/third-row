@@ -466,7 +466,7 @@ const Home = () => {
         </div>
       </FlexContainer>
 
-      {/* People Near You */}
+      {/* Popular Near You */}
       <FlexContainer
         variant="column-start"
         gap="3xl"
@@ -497,7 +497,7 @@ const Home = () => {
             </Link>
           </FlexContainer>
         </FlexContainer>
-        <div className="grid grid-cols-2 grid-rows-2 gap-10">
+        <div className="grid md:grid-cols-2 grid-rows-2 gap-10">
           <div className="col-span-1 row-span-2 bg-[var(--zinc)] rounded-lg">
             <img
               src="/gym.png"
