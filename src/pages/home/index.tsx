@@ -103,7 +103,7 @@ const Home = () => {
         className="section bg-[var(--zinc)]"
         gap="3xl"
       >
-        <div className="flex flex-row justify-between items-center flex-wrap sm:flex-nowrap p-5 bg-white md:rounded-[99px] rounded-4xl border-2 border-[#D5D2D3] ">
+        <div className="flex flex-row justify-between items-center flex-wrap sm:flex-nowrap gap-3 p-5 bg-white md:rounded-[99px] rounded-4xl border-2 border-[#D5D2D3] ">
           <FlexContainer
             alignItems="center"
             gap="none"
