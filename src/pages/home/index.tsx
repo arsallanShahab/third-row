@@ -118,7 +118,7 @@ const Home = () => {
           <span className="hidden sm:block h-8 w-[1px] bg-[var(--zinc-dark)]"></span>
           <FlexContainer
             alignItems="center"
-            className="flex-1 flex-wrap sm:flex-auto"
+            className="flex-1 flex-wrap sm:flex-auto sm:flex-nowrap"
           >
             <FlexContainer
               alignItems="center"
