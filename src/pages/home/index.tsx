@@ -178,7 +178,7 @@ const Home = () => {
           pagination={{ clickable: true }}
         >
           <SwiperSlide className="slide">
-            <div className="flex flex-col md:flex-row items-start md:items-center justify-center w-full h-full relative gap-12">
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-center w-full h-[520px] relative gap-12 sm:hidden md:flex">
               <FlexContainer
                 variant="column-start"
                 gap="5xl"
@@ -212,9 +212,83 @@ const Home = () => {
                 />
               </div>
             </div>
+            {/* Mobile slider */}
+            <div className="col-span-1 md:col-span-2 md:hidden">
+              <img
+                src="/slide-one.png"
+                alt="Event"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute flex flex-col justify-end items-start gap-3 inset-0 w-full h-full p-5 bg-gradient-to-b from-[rgba(0,0,0,0.9)] via-transparent to-[rgba(0,0,0,0.9)]">
+                <p className="text-base text-white">Discover Events of</p>
+                <h3 className="text-2xl font-semibold text-white">
+                  Olivia Rodrigo
+                </h3>
+                <FlexContainer>
+                  <button className="btn-outlined text-white border-white">
+                    SEE TICKETS
+                  </button>
+                </FlexContainer>
+              </div>
+            </div>
           </SwiperSlide>
-          <SwiperSlide>Slide 2</SwiperSlide>
-          <SwiperSlide>Slide 3</SwiperSlide>
+          <SwiperSlide>
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-center w-full h-[520px] relative gap-12">
+              <FlexContainer
+                variant="column-start"
+                gap="5xl"
+                className="md:min-w-[450px] pt-5 sm:pt-0"
+              >
+                <FlexContainer
+                  variant="column-start"
+                  gap="xl"
+                  className="w-full"
+                >
+                  {" "}
+                  <h1 className="text-3xl md:text-5xl text-[var(--grey-dark)]">
+                    IPL 2025{" "}
+                  </h1>
+                  <h1 className="text-4xl md:text-5xl text-[var(--grey-dark)] font-bold flex">
+                    Gujrat Titans <br></br>
+                    VS <br></br>
+                    Mumbai Indians
+                  </h1>
+                  <p className="text-base md:text-lg text-[var(--grey-dark)] z-10">
+                    Tickets for events at one place
+                  </p>
+                </FlexContainer>
+                <FlexContainer>
+                  <button className="btn-outlined">SEE TICKETS</button>
+                </FlexContainer>
+              </FlexContainer>
+              <div className="flex-1 h-full w-full">
+                <img
+                  src="/event-1.png"
+                  alt="Hero"
+                  className="w-full h-full object-cover rounded-xl"
+                />
+              </div>
+            </div>
+            {/* Mobile slider */}
+            <div className="col-span-1 md:col-span-2 md:hidden">
+              <img
+                src="/event1.png"
+                alt="Event"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute flex flex-col justify-end items-start gap-3 inset-0 w-full h-full p-5 bg-gradient-to-b from-[rgba(0,0,0,0.9)] via-transparent to-[rgba(0,0,0,0.9)]">
+                <p className="text-base text-white">IPL 2025</p>
+                <h3 className="text-2xl font-semibold text-white">
+                  Gujrat Titans vs Mumbai Indians
+                </h3>
+                <FlexContainer>
+                  <button className="btn-outlined text-white border-white">
+                    SEE TICKETS
+                  </button>
+                </FlexContainer>
+              </div>
+            </div>
+          </SwiperSlide>
         </Swiper>
       </FlexContainer>
 
@@ -240,7 +314,7 @@ const Home = () => {
             </Link>
           </FlexContainer>
         </FlexContainer>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-7">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
           <FlexContainer
             variant="column-center"
             className="bg-[#FEF2F2] px-5 py-10 rounded-xl"
@@ -326,7 +400,7 @@ const Home = () => {
             </Link>
           </FlexContainer>
         </FlexContainer>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-5 *:h-[300ppx] *:relative *:rounded-lg *:overflow-hidden">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-10 *:h-[300ppx] *:relative *:rounded-lg *:overflow-hidden">
           <div className="col-span-1 md:col-span-2">
             <img
               src="/event-1.png"
@@ -487,13 +561,13 @@ const Home = () => {
         gap="3xl"
         className="section bg-white pb-10"
       >
-        <FlexContainer wrap="wrap" variant="row-between" alignItems="center">
+        <FlexContainer variant="row-between" alignItems="center">
           <h3 className="text-3xl font-semibold text-[var(--grey-dark)]">
             Popular Near You
           </h3>
           <FlexContainer
             wrap="nowrap"
-            className="w-full overflow-x-auto hide-scrollbar scroll-smooth"
+            className="overflow-x-auto hide-scrollbar scroll-smooth"
           >
             {POPULAR_CATEGORIES_TABS.map((tab) => (
               <button
@@ -648,7 +722,7 @@ const Home = () => {
               onClick={() => {
                 const ref = sportsContainer.current;
                 if (ref) {
-                  ref.scrollLeft -= 300;
+                  ref.scrollLeft -= 335;
                 }
               }}
             >
@@ -659,7 +733,7 @@ const Home = () => {
               onClick={() => {
                 const ref = sportsContainer.current;
                 if (ref) {
-                  ref.scrollLeft += 300;
+                  ref.scrollLeft += 335;
                 }
               }}
             >
@@ -672,9 +746,8 @@ const Home = () => {
           </FlexContainer>
         </FlexContainer>
         <FlexContainer
-          gap="6xl"
           wrap="nowrap"
-          className="w-full overflow-x-auto pb-5 scroll-smooth hide-scrollbar"
+          className="w-full overflow-x-auto pb-5 scroll-smooth hide-scrollbar gap-10"
           ref={sportsContainer}
         >
           {SPORTS_DATA.map((e, i) => {
@@ -682,7 +755,7 @@ const Home = () => {
               <FlexContainer
                 variant="column-start"
                 key={i}
-                className="min-w-[300px]"
+                className="min-w-[320px]"
               >
                 <img
                   src={e.imgSrc}
@@ -727,7 +800,7 @@ const Home = () => {
               onClick={() => {
                 const ref = musicContainer.current;
                 if (ref) {
-                  ref.scrollLeft -= 325;
+                  ref.scrollLeft -= 335;
                 }
               }}
             >
@@ -738,7 +811,7 @@ const Home = () => {
               onClick={() => {
                 const ref = musicContainer.current;
                 if (ref) {
-                  ref.scrollLeft += 325;
+                  ref.scrollLeft += 335;
                 }
               }}
             >
@@ -751,9 +824,8 @@ const Home = () => {
           </FlexContainer>
         </FlexContainer>
         <FlexContainer
-          gap="6xl"
           wrap="nowrap"
-          className="w-full overflow-x-auto pb-5 scroll-smooth hide-scrollbar"
+          className="w-full overflow-x-auto pb-5 scroll-smooth hide-scrollbar gap-10"
           ref={musicContainer}
         >
           {MUSIC_DATA.map((e, i) => {
@@ -761,7 +833,7 @@ const Home = () => {
               <FlexContainer
                 variant="column-start"
                 key={i}
-                className="min-w-[300px]"
+                className="min-w-[320px]"
               >
                 <img
                   src={e.imgSrc}
