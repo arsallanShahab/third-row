@@ -11,8 +11,8 @@ import {
 } from "lucide-react";
 import { useRef, useState } from "react";
 import { Link } from "react-router";
-import { A11y, Autoplay, Pagination, Thumbs } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, A11y, Autoplay, Pagination, Thumbs } from "swiper/modules";
 import "swiper/swiper-bundle.css";
 
 const SPORTS_DATA = [
@@ -116,6 +116,8 @@ const Home = () => {
   const [activeTab, setActiveTab] = useState(0);
   const sportsContainer = useRef<HTMLDivElement | null>(null);
   const musicContainer = useRef<HTMLDivElement | null>(null);
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);
 
   return (
     <FlexContainer variant="column-start" gap="5xl">
@@ -797,23 +799,25 @@ const Home = () => {
           <FlexContainer alignItems="center" gap="xl">
             <button
               className="px-3 py-4 rounded-lg bg-[#FDECF2] cursor-pointer hidden sm:flex"
-              onClick={() => {
-                const ref = musicContainer.current;
-                if (ref) {
-                  ref.scrollLeft -= 335;
-                }
-              }}
+              // onClick={() => {
+              //   const ref = musicContainer.current;
+              //   if (ref) {
+              //     ref.scrollLeft -= 335;
+              //   }
+              // }}
+              ref={prevRef}
             >
               <ChevronLeft className="w-7 stroke-2 text-[var(--grey-dark)]" />
             </button>
             <button
               className="px-3 py-4 rounded-lg bg-[#FDECF2] cursor-pointer hidden sm:flex"
-              onClick={() => {
-                const ref = musicContainer.current;
-                if (ref) {
-                  ref.scrollLeft += 335;
-                }
-              }}
+              // onClick={() => {
+              //   const ref = musicContainer.current;
+              //   if (ref) {
+              //     ref.scrollLeft += 335;
+              //   }
+              // }}
+              ref={nextRef}
             >
               <ChevronRight className="w-7 stroke-2 text-[var(--grey-dark)]" />
             </button>
@@ -823,7 +827,7 @@ const Home = () => {
             </Link>
           </FlexContainer>
         </FlexContainer>
-        <FlexContainer
+        {/* <FlexContainer
           wrap="nowrap"
           className="w-full overflow-x-auto pb-5 scroll-smooth hide-scrollbar gap-10"
           ref={musicContainer}
@@ -857,7 +861,71 @@ const Home = () => {
               </FlexContainer>
             );
           })}
-        </FlexContainer>
+        </FlexContainer> */}
+        <Swiper
+          modules={[Navigation]}
+          spaceBetween={40}
+          onInit={(swiper) => {
+            // Connect custom buttons
+            swiper.params.navigation.prevEl = prevRef.current;
+            swiper.params.navigation.nextEl = nextRef.current;
+            swiper.navigation.init();
+            swiper.navigation.update();
+          }}
+          breakpoints={{
+            0: {
+              slidesPerView: 1,
+            },
+            480: {
+              slidesPerView: 1,
+            },
+            640: {
+              slidesPerView: 3,
+            },
+            768: {
+              slidesPerView: 3,
+            },
+            1024: {
+              slidesPerView: 4, // Small desktops/laptops
+            },
+          }}
+          
+          className="w-fit slideshow"
+          thumbs={{ swiper: thumbsSwiper }}
+          // pagination={{ clickable: true }}
+        >
+          {MUSIC_DATA.map((e, i) => {
+            return (
+              <SwiperSlide>
+                <FlexContainer
+                variant="column-start"
+                key={i}
+                // className="min-w-[320px]"
+              >
+                <img
+                  src={e.imgSrc}
+                  className="w-full object-cover rounded-lg"
+                />
+                <FlexContainer variant="row-between">
+                  <FlexContainer alignItems="center">
+                    <Calendar className="w-4 text-[var(--zinc-dark)]"></Calendar>
+                    <p className="text-sm text-[var(--zinc-dark)]">{e.date}</p>
+                  </FlexContainer>
+                  <FlexContainer alignItems="center">
+                    <MapPin className="w-4 text-[var(--zinc-dark)]"></MapPin>
+                    <p className="text-sm text-[var(--zinc-dark)]">
+                      {e.location}
+                    </p>
+                  </FlexContainer>
+                </FlexContainer>
+                <h3 className="text-xl font-semibold text-[var(--grey-dark)]">
+                  {e.title}
+                </h3>
+              </FlexContainer>
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
       </FlexContainer>
     </FlexContainer>
   );
