@@ -9,7 +9,7 @@ import {
   MapPin,
   Search,
 } from "lucide-react";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Link } from "react-router";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, A11y, Autoplay, Pagination, Thumbs } from "swiper/modules";
@@ -118,6 +118,11 @@ const Home = () => {
   const musicContainer = useRef<HTMLDivElement | null>(null);
   const prevRef = useRef(null);
   const nextRef = useRef(null);
+  const [isSwiperReady, setIsSwiperReady] = useState(false);
+
+  useEffect(() => {
+    setIsSwiperReady(true);
+  }, []);
 
   return (
     <FlexContainer variant="column-start" gap="5xl">
@@ -862,15 +867,13 @@ const Home = () => {
             );
           })}
         </FlexContainer> */}
+        {isSwiperReady && (
         <Swiper
           modules={[Navigation]}
           spaceBetween={40}
-          onInit={(swiper) => {
-            // Connect custom buttons
-            swiper.params.navigation.prevEl = prevRef.current;
-            swiper.params.navigation.nextEl = nextRef.current;
-            swiper.navigation.init();
-            swiper.navigation.update();
+          navigation={{
+            prevEl: prevRef.current,
+            nextEl: nextRef.current,
           }}
           breakpoints={{
             0: {
@@ -926,6 +929,7 @@ const Home = () => {
             );
           })}
         </Swiper>
+        )}
       </FlexContainer>
     </FlexContainer>
   );
