@@ -156,7 +156,7 @@ html {
 }
 
 .btn-outlined {
-  @apply text-sm border-2 font-semibold border-black px-9 py-5 rounded-[99px];
+  @apply text-sm border-2 font-semibold text-black border-black px-9 py-5 rounded-[99px] hover:bg-black hover:text-white duration-300;
 }
 
 .btn-filled {
@@ -165,6 +165,9 @@ html {
 
 .btn-underlined {
   @apply flex justify-center items-center py-1.5 gap-1.5 text-sm font-medium text-black border-b-[1.5px] border-black;
+}
+.btn-outlined-white {
+  @apply text-sm border-2 font-semibold border-white px-9 py-5 rounded-[99px];
 }
 
 .slideshow .slide {

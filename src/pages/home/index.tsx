@@ -9,10 +9,10 @@ import {
   MapPin,
   Search,
 } from "lucide-react";
-import { useRef, useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router";
+import { A11y, Autoplay, Navigation, Pagination, Thumbs } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, A11y, Autoplay, Pagination, Thumbs } from "swiper/modules";
 import "swiper/swiper-bundle.css";
 
 const SPORTS_DATA = [
@@ -116,6 +116,7 @@ const Home = () => {
   const [activeTab, setActiveTab] = useState(0);
   const sportsContainer = useRef<HTMLDivElement | null>(null);
   const musicContainer = useRef<HTMLDivElement | null>(null);
+
   const prevRef = useRef(null);
   const nextRef = useRef(null);
   const [isSwiperReady, setIsSwiperReady] = useState(false);
@@ -123,6 +124,12 @@ const Home = () => {
   useEffect(() => {
     setIsSwiperReady(true);
   }, []);
+
+  const prevRefMusic = useRef(null);
+  const nextRefMusic = useRef(null);
+
+  const prevRefSports = useRef(null);
+  const nextRefSports = useRef(null);
 
   return (
     <FlexContainer variant="column-start" gap="5xl">
@@ -176,127 +183,169 @@ const Home = () => {
             <button className="btn-filled flex-1 sm:flex-auto">SEARCH</button>
           </FlexContainer>
         </div>
-        <Swiper
-          spaceBetween={0}
-          slidesPerView={1}
-          className="w-fit md:h-[600px] slideshow"
-          modules={[Pagination, A11y, Autoplay, Thumbs]}
-          thumbs={{ swiper: thumbsSwiper }}
-          pagination={{ clickable: true }}
-        >
-          <SwiperSlide className="slide">
-            <div className="flex flex-col md:flex-row items-start md:items-center justify-center w-full h-[520px] relative gap-12 sm:hidden md:flex">
-              <FlexContainer
-                variant="column-start"
-                gap="5xl"
-                className="md:min-w-[450px] pt-5 sm:pt-0"
-              >
+        <div className="hidden sm:flex w-full">
+          <Swiper
+            spaceBetween={20}
+            slidesPerView={1}
+            className="w-fit md:h-[600px] slideshow"
+            modules={[Pagination, A11y, Autoplay, Thumbs]}
+            thumbs={{ swiper: thumbsSwiper }}
+            pagination={{ clickable: true }}
+          >
+            <SwiperSlide className="slide">
+              <div className="flex flex-col md:flex-row items-start md:items-center justify-center w-full h-[520px] relative gap-12 sm:hidden md:flex">
                 <FlexContainer
                   variant="column-start"
-                  gap="xl"
-                  className="w-full"
+                  gap="5xl"
+                  className="md:min-w-[450px] pt-5 sm:pt-0"
                 >
-                  {" "}
-                  <h1 className="text-3xl md:text-5xl text-[var(--grey-dark)]">
-                    Discover Events of{" "}
-                  </h1>
-                  <h1 className="text-4xl md:text-5xl text-[var(--grey-dark)] font-bold flex">
-                    Olivia Rodrigo
-                  </h1>
-                  <p className="text-base md:text-lg text-[var(--grey-dark)] z-10">
-                    Tickets for events at one place
-                  </p>
+                  <FlexContainer
+                    variant="column-start"
+                    gap="xl"
+                    className="w-full"
+                  >
+                    {" "}
+                    <h1 className="text-3xl md:text-5xl text-[var(--grey-dark)]">
+                      Discover Events of{" "}
+                    </h1>
+                    <h1 className="text-4xl md:text-5xl text-[var(--grey-dark)] font-bold flex">
+                      Olivia Rodrigo
+                    </h1>
+                    <p className="text-base md:text-lg text-[var(--grey-dark)] z-10">
+                      Tickets for events at one place
+                    </p>
+                  </FlexContainer>
+                  <FlexContainer>
+                    <Link to={"/"} className="btn-outlined">
+                      SEE TICKETS
+                    </Link>
+                  </FlexContainer>
                 </FlexContainer>
-                <FlexContainer>
-                  <button className="btn-outlined">SEE TICKETS</button>
+                <div className="flex-1 h-full w-full">
+                  <img
+                    src="/slide-one.png"
+                    alt="Hero"
+                    className="w-full h-full object-cover rounded-xl"
+                  />
+                </div>
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="flex flex-col md:flex-row items-start md:items-center justify-center w-full h-[520px] relative gap-12">
+                <FlexContainer
+                  variant="column-start"
+                  gap="5xl"
+                  className="md:min-w-[450px] pt-5 sm:pt-0"
+                >
+                  <FlexContainer
+                    variant="column-start"
+                    gap="xl"
+                    className="w-full"
+                  >
+                    {" "}
+                    <h1 className="text-3xl md:text-5xl text-[var(--grey-dark)]">
+                      IPL 2025{" "}
+                    </h1>
+                    <h1 className="text-4xl md:text-5xl text-[var(--grey-dark)] font-bold flex">
+                      Gujrat Titans VS <br></br>
+                      Mumbai Indians
+                    </h1>
+                    <p className="text-base md:text-lg text-[var(--grey-dark)] z-10">
+                      Tickets for events at one place
+                    </p>
+                  </FlexContainer>
+                  <FlexContainer>
+                    <Link to={"/"} className="btn-outlined">
+                      SEE TICKETS
+                    </Link>
+                  </FlexContainer>
                 </FlexContainer>
-              </FlexContainer>
-              <div className="flex-1 h-full w-full">
+                <div className="flex-1 h-full w-full">
+                  <img
+                    src="/event-1.png"
+                    alt="Hero"
+                    className="w-full h-full object-cover rounded-xl"
+                  />
+                </div>
+              </div>
+            </SwiperSlide>
+          </Swiper>
+        </div>
+        <div className="flex sm:hidden">
+          <Swiper
+            spaceBetween={20}
+            slidesPerView={1}
+            className="w-fit slideshow"
+            modules={[Pagination, A11y, Autoplay, Thumbs]}
+            thumbs={{ swiper: thumbsSwiper }}
+            pagination={{ clickable: true }}
+          >
+            <SwiperSlide className="slide">
+              <div className="flex flex-col items-start justify-center w-full h-[520px] relative gap-12 overflow-hidden">
+                <div className="absolute inset-0 w-full h-full bottom-0 left-0 z-10 bg-gradient-to-t from-[rgba(0,0,0,0.9)] via-transparent rounded-2xl">
+                  <FlexContainer
+                    variant="column-end"
+                    alignItems="start"
+                    justifyContent="end"
+                    gap="xl"
+                    className="w-full h-full p-5 text-white"
+                  >
+                    <FlexContainer variant="column-start" className="w-full">
+                      {" "}
+                      <h1 className="text-3xl">Discover Events of </h1>
+                      <h1 className="text-4xl font-bold">Olivia Rodrigo</h1>
+                      <p className="text-base">
+                        Tickets for events at one place
+                      </p>
+                    </FlexContainer>
+                    <FlexContainer>
+                      <button className="btn-outlined-white">
+                        SEE TICKETS
+                      </button>
+                    </FlexContainer>
+                  </FlexContainer>
+                </div>
                 <img
                   src="/slide-one.png"
                   alt="Hero"
                   className="w-full h-full object-cover rounded-xl"
                 />
               </div>
-            </div>
-            {/* Mobile slider */}
-            <div className="col-span-1 md:col-span-2 md:hidden">
-              <img
-                src="/slide-one.png"
-                alt="Event"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute flex flex-col justify-end items-start gap-3 inset-0 w-full h-full p-5 bg-gradient-to-b from-[rgba(0,0,0,0.9)] via-transparent to-[rgba(0,0,0,0.9)]">
-                <p className="text-base text-white">Discover Events of</p>
-                <h3 className="text-2xl font-semibold text-white">
-                  Olivia Rodrigo
-                </h3>
-                <FlexContainer>
-                  <button className="btn-outlined text-white border-white">
-                    SEE TICKETS
-                  </button>
-                </FlexContainer>
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="flex flex-col md:flex-row items-start md:items-center justify-center w-full h-[520px] relative gap-12">
-              <FlexContainer
-                variant="column-start"
-                gap="5xl"
-                className="md:min-w-[450px] pt-5 sm:pt-0"
-              >
-                <FlexContainer
-                  variant="column-start"
-                  gap="xl"
-                  className="w-full"
-                >
-                  {" "}
-                  <h1 className="text-3xl md:text-5xl text-[var(--grey-dark)]">
-                    IPL 2025{" "}
-                  </h1>
-                  <h1 className="text-4xl md:text-5xl text-[var(--grey-dark)] font-bold flex">
-                    Gujrat Titans <br></br>
-                    VS <br></br>
-                    Mumbai Indians
-                  </h1>
-                  <p className="text-base md:text-lg text-[var(--grey-dark)] z-10">
-                    Tickets for events at one place
-                  </p>
-                </FlexContainer>
-                <FlexContainer>
-                  <button className="btn-outlined">SEE TICKETS</button>
-                </FlexContainer>
-              </FlexContainer>
-              <div className="flex-1 h-full w-full">
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="flex flex-col items-start justify-center w-full h-[520px] relative gap-12 overflow-hidden">
+                <div className="absolute inset-0 w-full h-full bottom-0 left-0 z-10 bg-gradient-to-t from-[rgba(0,0,0,0.9)] via-transparent rounded-2xl">
+                  <FlexContainer
+                    variant="column-end"
+                    alignItems="start"
+                    justifyContent="end"
+                    gap="xl"
+                    className="w-full h-full p-5 text-white"
+                  >
+                    <FlexContainer variant="column-start" className="w-full">
+                      {" "}
+                      <h1 className="text-3xl">IPL 2025</h1>
+                      <h1 className="text-4xl font-bold">
+                        {" "}
+                        Gujrat Titans vs Mumbai Indians
+                      </h1>
+                    </FlexContainer>
+                    <FlexContainer>
+                      <button className="btn-outlined-white">
+                        SEE TICKETS
+                      </button>
+                    </FlexContainer>
+                  </FlexContainer>
+                </div>
                 <img
                   src="/event-1.png"
                   alt="Hero"
                   className="w-full h-full object-cover rounded-xl"
                 />
               </div>
-            </div>
-            {/* Mobile slider */}
-            <div className="col-span-1 md:col-span-2 md:hidden">
-              <img
-                src="/event1.png"
-                alt="Event"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute flex flex-col justify-end items-start gap-3 inset-0 w-full h-full p-5 bg-gradient-to-b from-[rgba(0,0,0,0.9)] via-transparent to-[rgba(0,0,0,0.9)]">
-                <p className="text-base text-white">IPL 2025</p>
-                <h3 className="text-2xl font-semibold text-white">
-                  Gujrat Titans vs Mumbai Indians
-                </h3>
-                <FlexContainer>
-                  <button className="btn-outlined text-white border-white">
-                    SEE TICKETS
-                  </button>
-                </FlexContainer>
-              </div>
-            </div>
-          </SwiperSlide>
-        </Swiper>
+            </SwiperSlide>
+          </Swiper>
+        </div>
       </FlexContainer>
 
       {/* Category Cards */}
@@ -712,6 +761,7 @@ const Home = () => {
       </FlexContainer>
 
       {/* Sports Section */}
+
       <FlexContainer
         variant="column-start"
         gap="3xl"
@@ -726,23 +776,13 @@ const Home = () => {
           <FlexContainer alignItems="center" gap="xl">
             <button
               className="px-3 py-4 rounded-lg bg-[#FDECF2] cursor-pointer hidden sm:flex"
-              onClick={() => {
-                const ref = sportsContainer.current;
-                if (ref) {
-                  ref.scrollLeft -= 335;
-                }
-              }}
+              ref={prevRefSports}
             >
               <ChevronLeft className="w-7 stroke-2 text-[var(--grey-dark)]" />
             </button>
             <button
               className="px-3 py-4 rounded-lg bg-[#FDECF2] cursor-pointer hidden sm:flex"
-              onClick={() => {
-                const ref = sportsContainer.current;
-                if (ref) {
-                  ref.scrollLeft += 335;
-                }
-              }}
+              ref={nextRefSports}
             >
               <ChevronRight className="w-7 stroke-2 text-[var(--grey-dark)]" />
             </button>
@@ -752,41 +792,66 @@ const Home = () => {
             </Link>
           </FlexContainer>
         </FlexContainer>
-        <FlexContainer
-          wrap="nowrap"
-          className="w-full overflow-x-auto pb-5 scroll-smooth hide-scrollbar gap-10"
-          ref={sportsContainer}
-        >
-          {SPORTS_DATA.map((e, i) => {
-            return (
-              <FlexContainer
-                variant="column-start"
-                key={i}
-                className="min-w-[320px]"
-              >
-                <img
-                  src={e.imgSrc}
-                  className="w-full h-[400px] object-cover rounded-lg"
-                />
-                <FlexContainer variant="row-between">
-                  <FlexContainer alignItems="center">
-                    <Calendar className="w-4 text-[var(--zinc-dark)]"></Calendar>
-                    <p className="text-sm text-[var(--zinc-dark)]">{e.date}</p>
+        {isSwiperReady && (
+          <Swiper
+            modules={[Navigation]}
+            loop={true}
+            spaceBetween={40}
+            navigation={{
+              prevEl: prevRefSports?.current,
+              nextEl: nextRefSports?.current,
+            }}
+            breakpoints={{
+              0: {
+                slidesPerView: 1,
+              },
+              480: {
+                slidesPerView: 1,
+              },
+              640: {
+                slidesPerView: 3,
+              },
+              768: {
+                slidesPerView: 3,
+              },
+              1024: {
+                slidesPerView: 4,
+              },
+            }}
+            className="w-fit slideshow"
+            thumbs={{ swiper: thumbsSwiper }}
+          >
+            {SPORTS_DATA.map((e, i) => {
+              return (
+                <SwiperSlide>
+                  <FlexContainer variant="column-start" key={i}>
+                    <img
+                      src={e.imgSrc}
+                      className="w-full h-[350px] object-cover rounded-lg"
+                    />
+                    <FlexContainer variant="row-between">
+                      <FlexContainer alignItems="center">
+                        <Calendar className="w-4 text-[var(--zinc-dark)]"></Calendar>
+                        <p className="text-sm text-[var(--zinc-dark)]">
+                          {e.date}
+                        </p>
+                      </FlexContainer>
+                      <FlexContainer alignItems="center">
+                        <MapPin className="w-4 text-[var(--zinc-dark)]"></MapPin>
+                        <p className="text-sm text-[var(--zinc-dark)]">
+                          {e.location}
+                        </p>
+                      </FlexContainer>
+                    </FlexContainer>
+                    <h3 className="text-xl font-semibold text-[var(--grey-dark)]">
+                      {e.title}
+                    </h3>
                   </FlexContainer>
-                  <FlexContainer alignItems="center">
-                    <MapPin className="w-4 text-[var(--zinc-dark)]"></MapPin>
-                    <p className="text-sm text-[var(--zinc-dark)]">
-                      {e.location}
-                    </p>
-                  </FlexContainer>
-                </FlexContainer>
-                <h3 className="text-xl font-semibold text-[var(--grey-dark)]">
-                  {e.title}
-                </h3>
-              </FlexContainer>
-            );
-          })}
-        </FlexContainer>
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+        )}
       </FlexContainer>
 
       {/* Music Section */}
@@ -804,25 +869,13 @@ const Home = () => {
           <FlexContainer alignItems="center" gap="xl">
             <button
               className="px-3 py-4 rounded-lg bg-[#FDECF2] cursor-pointer hidden sm:flex"
-              // onClick={() => {
-              //   const ref = musicContainer.current;
-              //   if (ref) {
-              //     ref.scrollLeft -= 335;
-              //   }
-              // }}
-              ref={prevRef}
+              ref={prevRefMusic}
             >
               <ChevronLeft className="w-7 stroke-2 text-[var(--grey-dark)]" />
             </button>
             <button
               className="px-3 py-4 rounded-lg bg-[#FDECF2] cursor-pointer hidden sm:flex"
-              // onClick={() => {
-              //   const ref = musicContainer.current;
-              //   if (ref) {
-              //     ref.scrollLeft += 335;
-              //   }
-              // }}
-              ref={nextRef}
+              ref={nextRefMusic}
             >
               <ChevronRight className="w-7 stroke-2 text-[var(--grey-dark)]" />
             </button>
@@ -832,103 +885,69 @@ const Home = () => {
             </Link>
           </FlexContainer>
         </FlexContainer>
-        {/* <FlexContainer
-          wrap="nowrap"
-          className="w-full overflow-x-auto pb-5 scroll-smooth hide-scrollbar gap-10"
-          ref={musicContainer}
-        >
-          {MUSIC_DATA.map((e, i) => {
-            return (
-              <FlexContainer
-                variant="column-start"
-                key={i}
-                className="min-w-[320px]"
-              >
-                <img
-                  src={e.imgSrc}
-                  className="w-full h-[400px] object-cover rounded-lg"
-                />
-                <FlexContainer variant="row-between">
-                  <FlexContainer alignItems="center">
-                    <Calendar className="w-4 text-[var(--zinc-dark)]"></Calendar>
-                    <p className="text-sm text-[var(--zinc-dark)]">{e.date}</p>
-                  </FlexContainer>
-                  <FlexContainer alignItems="center">
-                    <MapPin className="w-4 text-[var(--zinc-dark)]"></MapPin>
-                    <p className="text-sm text-[var(--zinc-dark)]">
-                      {e.location}
-                    </p>
-                  </FlexContainer>
-                </FlexContainer>
-                <h3 className="text-xl font-semibold text-[var(--grey-dark)]">
-                  {e.title}
-                </h3>
-              </FlexContainer>
-            );
-          })}
-        </FlexContainer> */}
         {isSwiperReady && (
-        <Swiper
-          modules={[Navigation]}
-          spaceBetween={40}
-          navigation={{
-            prevEl: prevRef.current,
-            nextEl: nextRef.current,
-          }}
-          breakpoints={{
-            0: {
-              slidesPerView: 1,
-            },
-            480: {
-              slidesPerView: 1,
-            },
-            640: {
-              slidesPerView: 3,
-            },
-            768: {
-              slidesPerView: 3,
-            },
-            1024: {
-              slidesPerView: 4, // Small desktops/laptops
-            },
-          }}
-          
-          className="w-fit slideshow"
-          thumbs={{ swiper: thumbsSwiper }}
-          // pagination={{ clickable: true }}
-        >
-          {MUSIC_DATA.map((e, i) => {
-            return (
-              <SwiperSlide>
-                <FlexContainer
-                variant="column-start"
-                key={i}
-                // className="min-w-[320px]"
-              >
-                <img
-                  src={e.imgSrc}
-                  className="w-full object-cover rounded-lg"
-                />
-                <FlexContainer variant="row-between">
-                  <FlexContainer alignItems="center">
-                    <Calendar className="w-4 text-[var(--zinc-dark)]"></Calendar>
-                    <p className="text-sm text-[var(--zinc-dark)]">{e.date}</p>
+          <Swiper
+            modules={[Navigation]}
+            loop={true}
+            spaceBetween={40}
+            navigation={{
+              prevEl: prevRefMusic?.current,
+              nextEl: nextRefMusic?.current,
+            }}
+            breakpoints={{
+              0: {
+                slidesPerView: 1,
+              },
+              480: {
+                slidesPerView: 1,
+              },
+              640: {
+                slidesPerView: 3,
+              },
+              768: {
+                slidesPerView: 3,
+              },
+              1024: {
+                slidesPerView: 4,
+              },
+            }}
+            className="w-fit slideshow"
+            thumbs={{ swiper: thumbsSwiper }}
+          >
+            {MUSIC_DATA.map((e, i) => {
+              return (
+                <SwiperSlide>
+                  <FlexContainer
+                    variant="column-start"
+                    key={i}
+                    // className="min-w-[320px]"
+                  >
+                    <img
+                      src={e.imgSrc}
+                      className="w-full h-[350px] object-cover rounded-lg"
+                    />
+                    <FlexContainer variant="row-between">
+                      <FlexContainer alignItems="center">
+                        <Calendar className="w-4 text-[var(--zinc-dark)]"></Calendar>
+                        <p className="text-sm text-[var(--zinc-dark)]">
+                          {e.date}
+                        </p>
+                      </FlexContainer>
+                      <FlexContainer alignItems="center">
+                        <MapPin className="w-4 text-[var(--zinc-dark)]"></MapPin>
+                        <p className="text-sm text-[var(--zinc-dark)]">
+                          {e.location}
+                        </p>
+                      </FlexContainer>
+                    </FlexContainer>
+                    <h3 className="text-xl font-semibold text-[var(--grey-dark)]">
+                      {e.title}
+                    </h3>
                   </FlexContainer>
-                  <FlexContainer alignItems="center">
-                    <MapPin className="w-4 text-[var(--zinc-dark)]"></MapPin>
-                    <p className="text-sm text-[var(--zinc-dark)]">
-                      {e.location}
-                    </p>
-                  </FlexContainer>
-                </FlexContainer>
-                <h3 className="text-xl font-semibold text-[var(--grey-dark)]">
-                  {e.title}
-                </h3>
-              </FlexContainer>
-              </SwiperSlide>
-            );
-          })}
-        </Swiper>
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
         )}
       </FlexContainer>
     </FlexContainer>
