@@ -3,7 +3,24 @@ import React from "react";
 import { Link } from "react-router";
 import { data } from "../../lib/constants/navbar";
 import { Button } from "../ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "../ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTrigger,
+} from "../ui/dialog";
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import FlexContainer from "./flex-container";
 
 type Props = {};
@@ -108,7 +125,91 @@ const Navbar = (props: Props) => {
               </div>
             </Link>
           ))}
-          <button className="btn-outlined">LOGIN/REGISTER</button>
+          <Dialog>
+            <DialogTrigger>
+              <button className="btn-outlined cursor-pointer">
+                LOGIN/REGISTER
+              </button>
+            </DialogTrigger>
+            <DialogContent>
+              <Tabs defaultValue="signup">
+                <TabsList className="grid grid-cols-2">
+                  <TabsTrigger value="signup" className="cursor-pointer">
+                    Signup
+                  </TabsTrigger>
+                  <TabsTrigger value="login" className="cursor-pointer">
+                    Login
+                  </TabsTrigger>
+                </TabsList>
+                <TabsContent value="signup">
+                  <Card className="border-none px-0 shadow-none">
+                    <CardHeader className="px-0">
+                      <CardTitle>Signup</CardTitle>
+                      <CardDescription>
+                        Create an account to start using our services.
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-2 px-0">
+                      <div className="space-y-1">
+                        <Label htmlFor="name">Name</Label>
+                        <Input id="name" placeholder="Pedro Duarte" />
+                      </div>
+                      <div className="space-y-1">
+                        <Label htmlFor="email">Email</Label>
+                        <Input
+                          id="email"
+                          type="email"
+                          placeholder="abc@gmail.com"
+                        />
+                      </div>
+                      <div className="space-y-1">
+                        <Label htmlFor="password">Password</Label>
+                        <Input
+                          id="password"
+                          type="password"
+                          placeholder="********"
+                        />
+                      </div>
+                    </CardContent>
+                    <CardFooter className="px-0">
+                      <Button className="w-full">Create Account</Button>
+                    </CardFooter>
+                  </Card>
+                </TabsContent>
+                <TabsContent value="login">
+                  <Card className="border-none shadow-none">
+                    <CardHeader className="px-0">
+                      <CardTitle>Login</CardTitle>
+                      <CardDescription>
+                        Login to your account to access our services.
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-2 px-0">
+                      <div className="space-y-1">
+                        <Label htmlFor="email">Email</Label>
+                        <Input
+                          id="email"
+                          type="email"
+                          placeholder="abc@gmail.com"
+                        />
+                      </div>
+                      <div className="space-y-1">
+                        <Label htmlFor="password">Password</Label>
+                        <Input
+                          id="password"
+                          type="password"
+                          placeholder="********"
+                        />
+                      </div>
+                    </CardContent>
+                    <CardFooter className="px-0">
+                      <Button className="w-full">Login to your account</Button>
+                    </CardFooter>
+                  </Card>
+                </TabsContent>
+              </Tabs>
+            </DialogContent>
+          </Dialog>
         </FlexContainer>
         <Sheet>
           <SheetTrigger asChild>
@@ -127,7 +228,6 @@ const Navbar = (props: Props) => {
               <Link to="/resell-tickets" className="nav-link pl-[0_!important]">
                 Resell Tickets
               </Link>
-              <button className="btn-outlined">LOGIN/REGISTER</button>
             </FlexContainer>
           </SheetContent>
         </Sheet>
