@@ -13,7 +13,6 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router";
 import { A11y, Autoplay, Navigation, Pagination, Thumbs } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/swiper-bundle.css";
 
 const SPORTS_DATA = [
   {
@@ -117,8 +116,6 @@ const Home = () => {
   const sportsContainer = useRef<HTMLDivElement | null>(null);
   const musicContainer = useRef<HTMLDivElement | null>(null);
 
-  const prevRef = useRef(null);
-  const nextRef = useRef(null);
   const [isSwiperReady, setIsSwiperReady] = useState(false);
 
   useEffect(() => {
@@ -371,66 +368,74 @@ const Home = () => {
           </FlexContainer>
         </FlexContainer>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
-          <FlexContainer
-            variant="column-center"
-            className="bg-[#FEF2F2] px-5 py-10 rounded-xl"
-          >
-            <div className="w-[100px] height-[100px] bg-[#D96868] rounded-[99px] p-7">
-              <img
-                src="/assets/mask.svg"
-                className="w-full h-full object-contain"
-              />
-            </div>
-            <h4 className="text-base font-semibold text-[var(--grey-dark)]">
-              Art & Theater
-            </h4>
-            <p className="text-sm text-[var(--zinc-dark)]">3 Events</p>
-          </FlexContainer>
-          <FlexContainer
-            variant="column-center"
-            className="bg-[#E7F7FF] px-5 py-10 rounded-xl"
-          >
-            <div className="w-[100px] height-[100px] bg-[#68B1D9] rounded-[99px] p-7">
-              <img
-                src="/assets/football.svg"
-                className="w-full h-full object-contain"
-              />
-            </div>
-            <h4 className="text-base font-semibold text-[var(--grey-dark)]">
-              Sports
-            </h4>
-            <p className="text-sm text-[var(--zinc-dark)]">5 Events</p>
-          </FlexContainer>
-          <FlexContainer
-            variant="column-center"
-            className="bg-[#EDFFF1] px-5 py-10 rounded-xl"
-          >
-            <div className="w-[100px] height-[100px] bg-[#68D981] rounded-[99px] p-7">
-              <img
-                src="/assets/music.svg"
-                className="w-full h-full object-contain"
-              />
-            </div>
-            <h4 className="text-base font-semibold text-[var(--grey-dark)]">
-              Concert
-            </h4>
-            <p className="text-sm text-[var(--zinc-dark)]">2 Events</p>
-          </FlexContainer>
-          <FlexContainer
-            variant="column-center"
-            className="bg-[#FEF2F2] px-5 py-10 rounded-xl"
-          >
-            <div className="w-[100px] height-[100px] bg-[#D96868] rounded-[99px] p-7">
-              <img
-                src="/assets/music.svg"
-                className="w-full h-full object-contain"
-              />
-            </div>
-            <h4 className="text-base font-semibold text-[var(--grey-dark)]">
-              Concert
-            </h4>
-            <p className="text-sm text-[var(--zinc-dark)]">3 Events</p>
-          </FlexContainer>
+          <Link to={"/category/art-&-theater"}>
+            <FlexContainer
+              variant="column-center"
+              className="bg-[#FEF2F2] px-5 py-10 rounded-xl"
+            >
+              <div className="w-[100px] height-[100px] bg-[#D96868] rounded-[99px] p-7">
+                <img
+                  src="/assets/mask.svg"
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <h4 className="text-base font-semibold text-[var(--grey-dark)]">
+                Art & Theater
+              </h4>
+              <p className="text-sm text-[var(--zinc-dark)]">3 Events</p>
+            </FlexContainer>
+          </Link>
+          <Link to={"/category/sports"}>
+            <FlexContainer
+              variant="column-center"
+              className="bg-[#E7F7FF] px-5 py-10 rounded-xl"
+            >
+              <div className="w-[100px] height-[100px] bg-[#68B1D9] rounded-[99px] p-7">
+                <img
+                  src="/assets/football.svg"
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <h4 className="text-base font-semibold text-[var(--grey-dark)]">
+                Sports
+              </h4>
+              <p className="text-sm text-[var(--zinc-dark)]">5 Events</p>
+            </FlexContainer>
+          </Link>
+          <Link to={"/category/concert"}>
+            <FlexContainer
+              variant="column-center"
+              className="bg-[#EDFFF1] px-5 py-10 rounded-xl"
+            >
+              <div className="w-[100px] height-[100px] bg-[#68D981] rounded-[99px] p-7">
+                <img
+                  src="/assets/music.svg"
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <h4 className="text-base font-semibold text-[var(--grey-dark)]">
+                Concert
+              </h4>
+              <p className="text-sm text-[var(--zinc-dark)]">2 Events</p>
+            </FlexContainer>
+          </Link>
+          <Link to={"/category/others"}>
+            <FlexContainer
+              variant="column-center"
+              className="bg-[#FEF2F2] px-5 py-10 rounded-xl"
+            >
+              <div className="w-[100px] height-[100px] bg-[#D96868] rounded-[99px] p-7">
+                <img
+                  src="/assets/music.svg"
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <h4 className="text-base font-semibold text-[var(--grey-dark)]">
+                Concert
+              </h4>
+              <p className="text-sm text-[var(--zinc-dark)]">3 Events</p>
+            </FlexContainer>
+          </Link>
         </div>
       </FlexContainer>
 
